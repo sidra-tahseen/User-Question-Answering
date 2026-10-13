@@ -3,7 +3,7 @@
 Built as a question-answering project for a data science portfolio.
 
 
-**[Live Demo](https://user-question-answering-gdhpbb2syrsi8u2v5cuzka.streamlit.app/)** · **[GitHub Repository](https://github.com/sidratahseen/user-question-answering)** · **[Hugging Face Model](https://huggingface.co/sidratahseen/User-Questioning-Answer)**
+**[Live Demo](https://user-question-answering-9bzqxqxjrr6rsufwprhozs.streamlit.app/)** · **[GitHub Repository](https://github.com/sidra-tahseen/User-Question-Answering)** · **[Hugging Face Model](https://huggingface.co/sidratahseen/User-Questioning-Answer)**
 
 
 I implemented a TF-IDF sentence-retrieval baseline, fine-tuned DistilBERT for extractive question answering on a subset of SQuAD 1.1, compared it with an existing SQuAD-fine-tuned checkpoint, and inspected incorrect predictions to understand where answer-span selection breaks.
