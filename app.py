@@ -12,7 +12,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-MODEL_PATH = Path(__file__).parent / "qa-distilbert-best"
+MODEL_ID = "sidratahseen/User-Questioning-Answer"
 MAROON = "#6F1D36"
 MAROON_DARK = "#481324"
 MAROON_LIGHT = "#A13D5B"
@@ -100,12 +100,12 @@ st.markdown(
 
 
 @st.cache_resource(show_spinner="Loading the question-answering model…")
-def load_qa_model(model_path: str):
+def load_qa_model(model_id: str):
     device = 0 if torch.cuda.is_available() else -1
     return pipeline(
         "question-answering",
-        model=model_path,
-        tokenizer=model_path,
+        model=model_id,
+        tokenizer=model_id,
         device=device,
     )
 
@@ -174,7 +174,7 @@ if run:
     else:
         try:
             with st.spinner("Reading the passage and locating an answer…"):
-                qa_model = load_qa_model(str(MODEL_PATH))
+                qa_model = load_qa_model(MODEL_ID)
                 result = qa_model(question=question.strip(), context=context.strip())
             st.divider()
             st.markdown('<div class="section-label">03 / Model result</div>', unsafe_allow_html=True)
@@ -191,8 +191,9 @@ if run:
                 st.markdown(f'<div class="fact-value">{"GPU" if torch.cuda.is_available() else "CPU"}</div>', unsafe_allow_html=True)
             with details[2]:
                 st.markdown('<div class="muted" style="padding-top:1.1rem;">The model score is not a calibrated probability that the answer is correct.</div>', unsafe_allow_html=True)
-        except OSError:
-            st.error("Model files not found. Keep the qa-distilbert-best folder beside app.py, with the saved model and tokenizer files inside it.")
+        except OSError as exc:
+            st.error("Could not load the model from Hugging Face. Check that the repository is public and contains the model weights, config, and tokenizer files.")
+            st.caption(str(exc))
         except Exception as exc:
             st.error(f"Unable to generate an answer: {exc}")
 
