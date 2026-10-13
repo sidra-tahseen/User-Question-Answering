@@ -2,6 +2,10 @@
 
 Built as a question-answering project for a data science portfolio.
 
+
+**Live Demo:** [Try the Question Answering App](https://user-question-answering-gdhpbb2syrsi8u2v5cuzka.streamlit.app/) · **Model:** [Hugging Face — User-Questioning-Answer](https://huggingface.co/sidratahseen/User-Questioning-Answer)
+
+
 I implemented a TF-IDF sentence-retrieval baseline, fine-tuned DistilBERT for extractive question answering on a subset of SQuAD 1.1, compared it with an existing SQuAD-fine-tuned checkpoint, and inspected incorrect predictions to understand where answer-span selection breaks.
 
 **Live demo:** TODO (Streamlit URL) &nbsp;|&nbsp; **Model:** TODO (Hugging Face model URL)
@@ -110,6 +114,33 @@ The model weights are not included in this repository by default because they ca
 ```bash
 python -m streamlit run app.py
 ```
+
+## Live Demo
+
+Try the deployed application: **[Find Answers in Your Text](https://user-question-answering-gdhpbb2syrsi8u2v5cuzka.streamlit.app/)**
+
+The app accepts a passage and a question, then uses a fine-tuned DistilBERT extractive question-answering model to identify the answer span within the supplied text. It does not search the web or generate information beyond the passage.
+
+### How to use
+
+1. Open the live demo.
+2. Paste a passage into the context field.
+3. Enter a question whose answer is contained in the passage.
+4. Submit the question to view the predicted answer and model score.
+
+### Model
+
+The application loads the fine-tuned model hosted on Hugging Face:
+
+[**View the model repository**](https://huggingface.co/sidratahseen/User-Questioning-Answer)
+
+### Deployment
+
+- **Frontend:** Streamlit
+- **Model hosting:** Hugging Face Hub
+- **Inference:** Hugging Face Transformers
+- **Model architecture:** DistilBERT for extractive question answering
+
 
 Streamlit will print a local URL, usually `http://localhost:8501`.
 
